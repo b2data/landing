@@ -1,0 +1,1527 @@
+/* 
+ * СОТА - Маркетплейс нового поколения
+ * Основной файл стилей
+ */
+
+:root {
+    /* Основная цветовая схема */
+    --primary-color: #FFC107; /* Медовый желтый */
+    --primary-dark: #FFA000;
+    --primary-light: #FFECB3;
+    --secondary-color: #E67E22; /* Ярко-оранжевый - светлее, насыщеннее */
+    --secondary-dark: #CA6B1A;
+    --secondary-light: #F0B56A;
+    --text-color: #212121;
+    --text-light: #757575;
+    --background: #FFFFFF;
+    --background-alt: #F5F5F5;
+    --accent: #FF5722;
+    
+    /* Шрифты */
+    --font-main: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    /* Размеры и отступы */
+    --container-width: 1200px;
+    --section-spacing: 100px;
+    --card-radius: 12px;
+    --button-radius: 30px;
+    
+    /* Переходы */
+    --transition-fast: 0.3s ease;
+    --transition-medium: 0.5s ease;
+    --transition-slow: 0.8s ease;
+}
+
+/* Reset и базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 62.5%; /* 1rem = 10px */
+}
+
+body {
+    font-family: var(--font-main);
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: linear-gradient(120deg, #fff 60%, #faedcd 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition-fast);
+}
+
+ul {
+    list-style: none;
+}
+
+/* Контейнер */
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Удалён кастомный курсор */
+
+/* Хедер */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 20px 0;
+    transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: var(--primary-color);
+}
+
+.logo-text {
+    margin-right: 10px;
+    letter-spacing: 1px;
+}
+
+.hexagon-container {
+    display: flex;
+}
+
+.hexagon {
+    width: 15px;
+    height: 15px;
+    background-color: var(--primary-color);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    margin-right: 5px;
+}
+
+nav ul {
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    font-weight: 500;
+    position: relative;
+    padding: 5px 0;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width var(--transition-fast);
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-color);
+    transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--background);
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+    transition: opacity var(--transition-medium), transform var(--transition-medium);
+}
+
+.mobile-menu.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+
+.mobile-menu ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobile-menu ul li {
+    margin: 15px 0;
+}
+
+.mobile-menu ul li a {
+    font-size: 2.4rem;
+    font-weight: 600;
+}
+
+/* Кнопки */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 30px;
+    border-radius: var(--button-radius);
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-fast), box-shadow 0.25s cubic-bezier(.21,.42,.21,1.2);
+    border: none;
+    outline: none;
+    box-shadow: 0 3px 14px rgba(0,0,0,.06);
+}
+
+.btn:active {
+    transform: scale(.96) translateY(1px);
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 193, 7, 0.4);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 126, 34, 0.4);
+}
+
+.btn-cta {
+    background-color: var(--accent);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+    padding: 15px 40px;
+    font-size: 1.8rem;
+}
+
+.btn-cta:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(255, 87, 34, 0.4);
+}
+
+.btn-large {
+    padding: 15px 40px;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* Секция Hero */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 170px 0 110px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--primary-light) 0%, #fff 60%, var(--secondary-light) 100%);
+    box-shadow: 0 10px 40px 0 rgba(255,193,7,0.08);
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.honeycomb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+.hero .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content {
+    width: 50%;
+}
+
+.hero-image {
+    width: 45%;
+}
+
+.hero h1 {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.hero .subtitle {
+    font-size: 2rem;
+    color: var(--text-light);
+    margin-bottom: 40px;
+    max-width: 500px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.7;
+}
+
+.mouse {
+    width: 30px;
+    height: 50px;
+    border: 2px solid var(--text-color);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.mouse-wheel {
+    width: 4px;
+    height: 8px;
+    background-color: var(--text-color);
+    border-radius: 2px;
+    animation: scrollIndication 1.5s infinite;
+}
+
+.scroll-indicator p {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+@keyframes scrollIndication {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(15px);
+        opacity: 0;
+    }
+}
+
+/* Заменители изображений */
+.image-placeholder {
+    background: linear-gradient(135deg, #fffbe6 30%, #f2f6f7 70%);
+    border-radius: var(--card-radius);
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #999;
+    border: 2px dashed #ffe082;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 14px 0 #ffecb38c;
+    transition: box-shadow 0.3s;
+}
+/* Стили для контейнера реальных изображений, заменяющих плейсхолдеры */
+.image-real-container,
+.hero-image-fit,
+.about-image-fit,
+.supplier-image-fit,
+.buyer-image-fit,
+.cta-image-fit {
+    background: none; /* Убираем фон контейнера для поддержки прозрачности PNG */
+    border-radius: var(--card-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* Убираем тень и рамку с самого контейнера, если они не нужны без фона */
+    /* box-shadow: 0 4px 14px 0 #ffecb38c; */
+    /* border: 1.5px solid #fffde7; */
+    transition: box-shadow 0.3s;
+    min-height: 200px; /* Можно будет скорректировать */
+    min-width:150px;   /* Можно будет скорректировать */
+    max-height:380px;  /* Можно будет скорректировать */
+    position:relative;
+}
+.hero-image-fit {
+    aspect-ratio: 1/1;
+    min-width:255px;
+    min-height:255px;
+    max-height:390px;
+}
+.about-image-fit {
+    aspect-ratio: 16/10;
+    min-width: 280px;
+    min-height: 220px;
+    max-height: 330px;
+}
+/* Стили для изображений в секции "Как это работает" */
+.flow-image .supplier-image-fit,
+.flow-image .buyer-image-fit {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flow-image .supplier-image-fit,
+.flow-image .buyer-image-fit {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    position: relative;
+}
+
+.flow-image .supplier-image-fit img,
+.flow-image .buyer-image-fit img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    object-position: center;
+    clip-path: inset(0 10% 0 10%);
+    display: block;
+}
+
+/* Убираем нежелательный hover-эффект масштабирования для этих конкретных картинок */
+.flow-image .supplier-image-fit:hover img,
+.flow-image .buyer-image-fit:hover img {
+    transform: none; /* Убираем трансформацию при наведении */
+}
+
+/* Общие стили для supplier/buyer image fit вне flow-image остаются как были, если они где-то еще используются */
+.supplier-image-fit:not(.flow-image .supplier-image-fit) {
+    aspect-ratio: 5/4;
+    min-width:200px;
+    min-height:180px;
+    max-height:250px;
+}
+.buyer-image-fit:not(.flow-image .buyer-image-fit) {
+    aspect-ratio: 5/4;
+    min-width:200px;
+    min-height:180px;
+    max-height:250px;
+}
+.cta-image-fit {
+    aspect-ratio: 16/9; /* Чуть более широкое соотношение для большей картинки */
+    min-width: 330px;   /* Стало больше */
+    min-height: 185px;  /* Стало больше */
+    max-height: 340px;  /* Стало больше */
+    width: 70%;         /* Стало шире */
+    max-width: 550px;   /* Стало больше */
+    margin-bottom: 25px;
+}
+
+.image-real-container img,
+.hero-image-fit img,
+.about-image-fit img,
+.supplier-image-fit img,
+.buyer-image-fit img,
+.cta-image-fit img {
+    width: 100%;
+    height: 100%;
+    min-width:100px;
+    object-fit: contain; /* Изображение полностью помещается, сохраняя пропорции */
+    object-position:center;
+    display: block;
+    /* border-radius убрал отсюда, т.к. контейнер теперь без фона, скругление самого img не всегда нужно/заметно */
+    transition: transform 0.4s ease;
+    /* box-shadow также убрал с самого img, т.к. эффект "вырезанности" может быть лучше без него */
+    /* Для псевдо-3D можно добавить filter: drop-shadow(), если нужно */
+    /* filter: drop-shadow(0px 5px 10px rgba(0,0,0,0.15)); */
+}
+
+.image-real-container:hover img,
+.hero-image-fit:hover img,
+.about-image-fit:hover img,
+.supplier-image-fit:hover img,
+.buyer-image-fit:hover img,
+.cta-image-fit:hover img {
+    transform: scale(1.03); /* Эффект при наведении можно оставить или изменить */
+}
+
+.benefit-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg,#fffde7 60%, #ffe082dd 100%);
+    color: var(--primary-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    font-size: 2.4rem;
+    box-shadow:0 2px 7px #ffe08266;
+    transition: box-shadow 0.21s, transform 0.3s;
+}
+.benefit-card:hover .benefit-icon{
+    box-shadow:0 6px 20px #ffb3007a;
+    transform: scale(1.08) rotate(-2deg);
+    background: linear-gradient(135deg,#ffecb3 0%, #ffe082 100%);
+}
+
+/* Разделители между секциями */
+section {
+    position:relative;
+}
+section+section {
+    border-top:1.5px solid #f8e596;
+}
+
+.hero-bg::before {
+    content:'';
+    pointer-events:none;
+    z-index:0;
+    position:absolute;
+    left:0;top:0;width:100%;height:100%;
+    background: radial-gradient(ellipse at 60% 30%, #fffbe7 52%, transparent 100%) no-repeat;
+    opacity:.38;
+}
+.hero-bg::after {
+    content:'';
+    pointer-events:none;
+    z-index:0;
+    position:absolute;
+    right:0;bottom:0;width:56vw;height:56vw;
+    background:radial-gradient(circle at right bottom, #ffc10744 0%, transparent 80%);
+    opacity:.31;
+}
+
+.image-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 0%, transparent 50%, rgba(255, 193, 7, 0.1) 50%, transparent 100%);
+    background-size: 20px 20px;
+}
+
+.placeholder-text {
+    position: relative;
+    z-index: 1;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    padding: 20px;
+}
+
+/* Секция О проекте */
+.about {
+    padding: var(--section-spacing) 0;
+    background-color: var(--background-alt);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 3.6rem;
+    font-weight: 700;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+
+.about-text {
+    width: 55%;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.about-image {
+    width: 40%;
+}
+
+.tech-bubbles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 50px;
+}
+
+.bubble {
+    background-color: white;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.bubble:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Секция Преимущества с 3D-каруселью */
+.benefits {
+    padding: var(--section-spacing) 0;
+    position: relative;
+    perspective: 1000px; /* Создаем 3D-перспективу */
+    overflow: hidden;
+}
+
+/* Контейнер для 3D-карусели */
+.benefits-3d-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    height: 450px; /* Фиксированная высота для карусели */
+}
+
+/* Контейнер для всех карточек внутри карусели */
+.benefits-carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d; /* Важно для сохранения 3D-эффекта */
+    transition: transform 0.8s ease;
+}
+
+/* Основные стили для всех карточек преимуществ */
+.benefit-card {
+    position: absolute;
+    background-color: white;
+    border-radius: var(--card-radius);
+    padding: 35px 30px;
+    box-shadow: 0 8px 30px rgba(255,193,7, 0.09), 0 2px 10px rgba(33,150,243,0.04);
+    border: 1.5px solid #fffde7;
+    transition: 
+        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+        opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+        box-shadow 0.6s ease,
+        z-index 0.8s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transform: translateX(-50%) translateZ(-200px);
+    width: 320px;
+    max-width: 90%;
+}
+
+/* Основная карточка (на переднем плане) */
+.benefit-primary {
+    transform: translateX(0) translateZ(0);
+    z-index: 10;
+    opacity: 1;
+    box-shadow: 0 15px 45px rgba(255,193,7, 0.2), 0 8px 20px rgba(33,150,243,0.08);
+    border-color: var(--primary-color);
+}
+
+/* Вторичные карточки (слева и справа от основной) */
+.benefit-secondary[data-position="left"] {
+    transform: translateX(-115%) translateZ(-100px);
+    opacity: 0.8;
+    z-index: 5;
+}
+
+.benefit-secondary[data-position="right"] {
+    transform: translateX(115%) translateZ(-100px);
+    opacity: 0.8;
+    z-index: 5;
+}
+
+/* Скрытые карточки (будут показаны при прокрутке) */
+.benefit-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(0) translateZ(-300px);
+    z-index: 1;
+}
+
+/* Контейнер для иконки внутри карточки */
+.benefit-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg,#fffde7 60%, #ffe082dd 100%);
+    color: var(--primary-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    font-size: 2.8rem;
+    box-shadow: 0 4px 12px rgba(255,224,130,0.4);
+    transition: all 0.3s ease;
+}
+
+/* При наведении на карточку иконка трансформируется */
+.benefit-card:hover .benefit-icon {
+    transform: scale(1.1) rotate(-5deg);
+    box-shadow: 0 8px 25px rgba(255,193,7,0.5);
+    background: linear-gradient(135deg,#ffecb3 0%, #ffe082 100%);
+}
+
+/* Заголовок карточки */
+.benefit-card h3 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+/* Текст карточки */
+.benefit-card p {
+    font-size: 1.6rem;
+    color: var(--text-light);
+    line-height: 1.4;
+}
+
+/* Навигация карусели */
+.carousel-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    z-index: 20;
+}
+
+/* Стили для индикаторов карусели */
+.carousel-indicators {
+    display: flex;
+    gap: 8px;
+    margin: 0 15px;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255,193,7, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background-color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+/* Стили для кнопок управления каруселью */
+.carousel-control {
+    background-color: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-light);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.8rem;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    z-index: 30;
+}
+
+.carousel-control:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255,193,7,0.3);
+}
+
+.carousel-control:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(255,193,7,0.2);
+}
+
+/* Адаптивность для различных экранов */
+@media (max-width: 992px) {
+    .benefits-3d-carousel {
+        height: 480px; /* Немного увеличиваем высоту для лучшего отображения */
+    }
+    
+    .benefit-card {
+        width: 280px;
+        padding: 30px 25px;
+    }
+    
+    .benefit-secondary[data-position="left"] {
+        transform: translateX(-100%) translateZ(-120px);
+    }
+    
+    .benefit-secondary[data-position="right"] {
+        transform: translateX(100%) translateZ(-120px);
+    }
+}
+
+@media (max-width: 768px) {
+    .benefits-3d-carousel {
+        height: 520px;
+    }
+    
+    .benefit-card {
+        width: 260px;
+        padding: 25px 20px;
+    }
+    
+    .benefit-card h3 {
+        font-size: 2rem;
+    }
+    
+    .benefit-card p {
+        font-size: 1.5rem;
+    }
+    
+    .benefit-secondary[data-position="left"] {
+        transform: translateX(-90%) translateZ(-100px) scale(0.85);
+    }
+    
+    .benefit-secondary[data-position="right"] {
+        transform: translateX(90%) translateZ(-100px) scale(0.85);
+    }
+    
+    .benefit-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2.4rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .benefits-3d-carousel {
+        height: 480px;
+    }
+    
+    .benefit-card {
+        width: 240px;
+        padding: 20px 15px;
+    }
+    
+    .benefit-card h3 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+    
+    .benefit-card p {
+        font-size: 1.4rem;
+    }
+    
+    /* На мобильных устройствах показываем только основную карточку */
+    .benefit-secondary {
+        opacity: 0.6;
+        transform: scale(0.75) translateZ(-150px);
+    }
+    
+    .benefit-secondary[data-position="left"] {
+        transform: translateX(-75%) translateZ(-80px) scale(0.7);
+    }
+    
+    .benefit-secondary[data-position="right"] {
+        transform: translateX(75%) translateZ(-80px) scale(0.7);
+    }
+    
+    .carousel-control {
+        width: 35px;
+        height: 35px;
+        font-size: 1.6rem;
+    }
+    
+    .indicator {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* Секция Как это работает */
+.how-it-works {
+    padding: var(--section-spacing) 0;
+    background-color: var(--background-alt);
+}
+
+.tabs {
+    width: 100%;
+}
+
+.tab-headers {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.tab-header {
+    padding: 15px 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border-bottom: 3px solid transparent;
+    opacity: 0.7;
+}
+
+.tab-header.active {
+    border-bottom-color: var(--primary-color);
+    opacity: 1;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 14px;
+}
+
+.flow-diagram {
+    width: 50%;
+    height: auto;
+    min-height: 0;
+    flex: 1 1 0;
+    /* flex-shrink: 0; */
+}
+
+.flow-image {
+    width: 50%;
+    min-width: 220px;
+    height: auto;
+    min-height: 0;
+    flex: 1 1 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    border-radius: 8px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.flow-step {
+    display: flex;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.flow-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 60px;
+    left: 25px;
+    width: 2px;
+    height: calc(100% - 30px);
+    background-color: var(--primary-light);
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-right: 20px;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.step-content {
+    padding: 10px 0;
+}
+
+.step-content h3 {
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+/* Секция Начните работать */
+.start {
+    padding: var(--section-spacing) 0;
+    background: linear-gradient(90deg, #fffde7 0%, #fff 100%);
+    border-top: 2px solid #fffde7;
+    border-bottom: 2px solid #faf6de;
+}
+
+.start-paths {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.path-card {
+    flex: 1;
+    background-color: white;
+    border-radius: var(--card-radius);
+    padding: 40px;
+    box-shadow: 0 10px 40px 0 rgba(255, 193, 7, 0.10), 0 3px 30px 0 #2196f311;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    border:1.5px solid #fffde7;
+    min-width:270px;
+}
+
+.path-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+#supplier-path {
+    border-top: 5px solid var(--primary-color);
+}
+
+#buyer-path {
+    border-top: 5px solid var(--secondary-color);
+}
+
+.path-card h3 {
+    font-size: 2.4rem;
+    margin-bottom: 15px;
+}
+
+.path-card p {
+    margin-bottom: 25px;
+    color: var(--text-light);
+}
+
+.path-card .image-placeholder {
+    margin-bottom: 25px;
+}
+
+.path-features {
+    margin-bottom: 25px;
+}
+
+.path-features li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.path-features li i {
+    color: var(--primary-color);
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+#buyer-path .path-features li i {
+    color: var(--secondary-color);
+}
+
+.path-card .btn {
+    margin-top: auto;
+}
+
+/* Секция CTA */
+.cta {
+    padding: 44px 0 82px 0;
+    background: none;
+    color: var(--text-color);
+    position: relative;
+    overflow: visible;
+    border-radius: 0 0 32px 32px;
+    margin-bottom: 0px;
+    box-shadow: none;
+}
+
+.cta-remake {
+    background: linear-gradient(135deg, #fdfbf0 0%, #fefef5 100%); /* Очень светлый, почти белый фон */
+    border-radius:20px;
+    box-shadow:0 8px 45px 0 rgba(0, 0, 0, 0.08); /* Более мягкая тень */
+    padding:45px 30px 45px 30px; /* Немного увеличим паддинги */
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    position:relative;
+}
+.cta-remake h2 {
+    margin-bottom:14px;
+    font-size:2.8rem; /* Немного увеличим шрифт заголовка */
+    font-weight:700;
+    color: #333; /* Темный цвет для заголовка */
+    letter-spacing:0.024em;
+    text-shadow: none; /* Убираем тень, так как фон теперь светлый */
+}
+.cta-remake p {
+    font-size:1.4rem; /* Немного увеличим шрифт параграфа */
+    color:#555; /* Темно-серый цвет для параграфа, хорошо читаемый на светлом */
+    margin-bottom:30px;
+    margin-top:0;
+    max-width: 520px; /* Немного увеличим максимальную ширину */
+}
+.cta-visual {
+    margin-bottom:26px;
+}
+/* Блок .cta-visual с SVG больше не используется, его можно удалить из HTML или скрыть, если картинка его заменяет */
+.cta-visual {
+    display: none; /* Скрываем, если картинка полностью заменяет этот элемент */
+}
+.btn-cta-invert {
+    background: var(--primary-color); /* Используем основной желтый */
+    color: var(--text-color) !important;
+    box-shadow: 0 5px 25px rgba(255, 193, 7, 0.35);
+    border:none;
+    font-weight: 700;
+    padding: 15px 35px; /* Немного увеличим кнопку */
+    font-size: 1.6rem;
+}
+.btn-cta-invert:hover {
+    background: var(--primary-dark);
+    color: var(--text-color);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 30px rgba(255, 193, 7, 0.45);
+}
+
+.cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.03);
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.cta .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 16px;
+    background: #fff1eda0;
+    box-shadow: 0 3px 30px 0 #ffc1072a;
+    padding:18px 20px 18px 40px;
+    margin-top:16px;
+}
+
+.cta-content {
+    width: 55%;
+}
+
+.cta-image {
+    width: 40%;
+}
+
+.cta h2 {
+    font-size: 3.6rem;
+    margin-bottom: 15px;
+}
+
+.cta p {
+    font-size: 1.8rem;
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
+
+/* Footer */
+footer {
+    background-color: var(--text-color);
+    color: white;
+    padding: 80px 0 30px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.footer-logo {
+    width: 25%;
+}
+
+.footer-logo .logo-text {
+    font-size: 2.8rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.footer-links {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-column h4 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-column h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    opacity: 0.7;
+    transition: opacity var(--transition-fast);
+}
+
+.footer-column ul li a:hover {
+    opacity: 1;
+}
+
+.footer-social {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-social h4 {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.social-icons a {
+    width: 45px;
+    height: 45px;
+    font-size: 2rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.social-icons a:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+}
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-legal {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-legal a {
+    opacity: 0.7;
+}
+
+.footer-legal a:hover {
+    opacity: 1;
+}
+
+/* Эффекты для анимации */
+.reveal-text {
+    overflow: hidden;
+    position: relative;
+}
+
+.reveal-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    transform: translateX(-100%);
+    animation: revealText 1.5s ease forwards;
+}
+
+.delay-1::after {
+    animation-delay: 0.3s;
+}
+
+.delay-2::after {
+    animation-delay: 0.6s;
+}
+
+@keyframes revealText {
+    0% {
+        transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 1200px) {
+    html {
+        font-size: 58%;
+    }
+    
+    .hero h1 {
+        font-size: 4.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    html {
+        font-size: 56%;
+    }
+    
+    .hero .container,
+    .about-content,
+    .tab-pane.active,
+    .start-paths,
+    .cta .container {
+        flex-direction: column;
+    }
+    
+    .hero-content,
+    .hero-image,
+    .about-text,
+    .about-image,
+    .flow-diagram,
+    .flow-image,
+    .cta-content,
+    .cta-image {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+    
+    .hero-image,
+    .about-image,
+    .flow-image,
+    .cta-image {
+        margin-top: 40px;
+    }
+    
+    .hero {
+        padding: 150px 0 80px;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .path-card {
+        margin-bottom: 30px;
+    }
+    
+    .footer-logo,
+    .footer-links,
+    .footer-social {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    
+    .footer-links {
+        order: 3;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .hero h1 {
+        font-size: 3.8rem;
+    }
+    
+    .section-title {
+        font-size: 3.2rem;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .start-paths {
+        gap: 0;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    :root {
+        --section-spacing: 70px;
+    }
+    
+    html {
+        font-size: 54%;
+    }
+    
+    .hero {
+        padding: 120px 0 60px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+    }
+    
+    .section-title {
+        font-size: 2.8rem;
+    }
+    
+    .tab-headers {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .tab-header {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .footer-legal {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

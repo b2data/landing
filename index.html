@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СОТА | Маркетплейс нового поколения</title>
+    <meta name="description" content="СОТА — маркетплейс нового поколения, соединяющий поставщиков и покупателей напрямую через телеграм и веб-интерфейс. Без посредников, на основе ИИ и блокчейн.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <span class="logo-text">СОТА</span>
+                <div class="hexagon-container">
+                    <div class="hexagon"></div>
+                    <div class="hexagon"></div>
+                    <div class="hexagon"></div>
+                </div>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="#about">О проекте</a></li>
+                    <li><a href="#benefits">Преимущества</a></li>
+                    <li><a href="#how-it-works">Как это работает</a></li>
+                    <li><a href="#start">Начать</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu">
+        <div class="container">
+            <ul>
+                <li><a href="#about">О проекте</a></li>
+                <li><a href="#benefits">Преимущества</a></li>
+                <li><a href="#how-it-works">Как это работает</a></li>
+                <li><a href="#start">Начать</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero">
+            <div class="hero-bg">
+                <div class="honeycomb">
+                    <!-- Сетка сот будет создана через JS -->
+                </div>
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="reveal-text">Маркетплейс, который меняет правила</h1>
+                    <p class="subtitle reveal-text delay-1">Прямой контакт производителей и покупателей без посредников. Справедливые цены. Прозрачные сделки.</p>
+                    <div class="hero-buttons reveal-text delay-2">
+                        <a href="#supplier" class="btn btn-primary">Я поставщик</a>
+                        <a href="#buyer" class="btn btn-secondary">Я покупатель</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+<div class="image-real-container hero-image-fit">
+    <img src="img/hero.png" alt="Пчелиные соты крупным планом" loading="lazy">
+</div>
+                </div>
+            </div>
+            
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">О проекте СОТА</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>СОТА — это современный маркетплейс, работающий через Телеграм и веб-интерфейс, который соединяет производителей сельскохозяйственных товаров напрямую с покупателями.</p>
+                        <p>Мы используем технологии искусственного интеллекта и блокчейн для создания максимально прозрачной и эффективной платформы, где каждый участник получает именно то, что ему нужно — без лишних затрат и сложностей.</p>
+                    </div>
+                    <div class="about-image">
+<div class="image-real-container about-image-fit">
+    <img src="img/about.png" alt="Фермер использует цифровые технологии" loading="lazy">
+</div>
+                    </div>
+                </div>
+                <div class="tech-bubbles">
+                    <div class="bubble">Telegram</div>
+                    <div class="bubble">ИИ</div>
+                    <div class="bubble">Блокчейн</div>
+                    <div class="bubble">Смарт-контракты</div>
+                    <div class="bubble">Веб-интерфейс</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="benefits" class="benefits">
+            <div class="container">
+                <h2 class="section-title">Почему СОТА — это выгодно</h2>
+                <div class="benefits-3d-carousel">
+                    <div class="benefits-carousel-container">
+                        <!-- Основная карточка на переднем плане -->
+                        <div class="benefit-card benefit-primary active" data-position="center">
+                            <div class="benefit-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h3>Прямой контакт</h3>
+                            <p>Никаких посредников между производителем и покупателем. Вы общаетесь напрямую с теми, кто вам нужен.</p>
+                        </div>
+                        
+                        <!-- Вторичные карточки (позади слева и справа) -->
+                        <div class="benefit-card benefit-secondary" data-position="left">
+                            <div class="benefit-icon">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <h3>Справедливые цены</h3>
+                            <p>Отсутствие посредников значит отсутствие наценок до 50%. Платите только за сам товар.</p>
+                        </div>
+                        
+                        <div class="benefit-card benefit-secondary" data-position="right">
+                            <div class="benefit-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <h3>Быстрый оборот</h3>
+                            <p>Производители получают деньги сразу после выполнения заказа, а не ждут месяцами.</p>
+                        </div>
+                        
+                        <!-- Дополнительные карточки для карусели (скрыты изначально) -->
+                        <div class="benefit-card benefit-hidden" data-position="hidden">
+                            <div class="benefit-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Надёжность</h3>
+                            <p>Все сделки защищены технологией блокчейн. Вы всегда знаете, с кем имеете дело и можете проверить репутацию.</p>
+                        </div>
+                        
+                        <div class="benefit-card benefit-hidden" data-position="hidden">
+                            <div class="benefit-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Коллективные закупки</h3>
+                            <p>Покупатели могут объединяться для оптовых закупок и получать лучшие цены.</p>
+                        </div>
+                        
+                        <div class="benefit-card benefit-hidden" data-position="hidden">
+                            <div class="benefit-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3>Удобство Телеграм</h3>
+                            <p>Управляйте всеми сделками через удобный и привычный интерфейс Телеграм, получайте мгновенные уведомления.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Навигация карусели -->
+                    <div class="carousel-navigation">
+                        <button class="carousel-control prev" aria-label="Предыдущее преимущество">&lt;</button>
+                        <div class="carousel-indicators">
+                            <span class="indicator active" data-index="0"></span>
+                            <span class="indicator" data-index="1"></span>
+                            <span class="indicator" data-index="2"></span>
+                            <span class="indicator" data-index="3"></span>
+                            <span class="indicator" data-index="4"></span>
+                            <span class="indicator" data-index="5"></span>
+                        </div>
+                        <button class="carousel-control next" aria-label="Следующее преимущество">&gt;</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2 class="section-title">Как это работает</h2>
+                <div class="tabs">
+                    <div class="tab-headers">
+                        <div class="tab-header active" data-tab="supplier">Для поставщика</div>
+                        <div class="tab-header" data-tab="buyer">Для покупателя</div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="supplier">
+                            <div class="flow-diagram">
+                                <div class="flow-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h3>Регистрация</h3>
+                                        <p>Зарегистрируйтесь в Телеграм-боте СОТА и заполните информацию о своей компании.</p>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h3>Размещение товаров</h3>
+                                        <p>Добавьте свои товары на "полку" маркетплейса через веб-интерфейс. Укажите количество, цены и условия поставки.</p>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h3>Получение заказов</h3>
+                                        <p>Получайте уведомления о новых заказах прямо в Телеграм и подтверждайте их.</p>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h3>Выполнение и оплата</h3>
+                                        <p>Доставьте товар и получите оплату сразу после подтверждения получения.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flow-image">
+<div class="image-real-container supplier-image-fit">
+    <img src="img/How-it-works-supplier.png" alt="Схема работы для поставщика" loading="lazy">
+</div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="buyer">
+                            <div class="flow-diagram">
+                                <div class="flow-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h3>Регистрация</h3>
+                                        <p>Зарегистрируйтесь в Телеграм-боте СОТА и укажите ваши предпочтения по закупкам.</p>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h3>Выбор товаров</h3>
+                                        <p>Просматривайте каталог товаров от проверенных поставщиков и выбирайте то, что вам нужно.</p>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h3>Заказ или совместная закупка</h3>
+                                        <p>Делайте заказ самостоятельно или присоединяйтесь к коллективной закупке для лучшей цены.</p>
+                                    </div>
+                                </div>
+                                <div class="flow-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h3>Получение товара</h3>
+                                        <p>Получите товар, проверьте качество и подтвердите получение для завершения сделки.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flow-image">
+<div class="image-real-container buyer-image-fit">
+    <img src="img/How-it-works-buyer.png" alt="Схема работы для покупателя" loading="lazy">
+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="start" class="start">
+            <div class="container">
+                <h2 class="section-title">Начните работать с СОТА прямо сейчас</h2>
+                <div class="start-paths">
+                    <div class="path-card" id="supplier-path">
+                        <h3>Я поставщик</h3>
+                        <p>Хотите быстро продавать свою продукцию без посредников и лишних затрат?</p>
+<div class="image-real-container supplier-image-fit">
+    <img src="img/Start-supplier.png" alt="Счастливый поставщик" loading="lazy">
+</div>
+                        <ul class="path-features">
+                            <li><i class="fas fa-check"></i> Моментальные продажи без ожидания</li>
+                            <li><i class="fas fa-check"></i> Прямой контакт с покупателями</li>
+                            <li><i class="fas fa-check"></i> Быстрые выплаты</li>
+                            <li><i class="fas fa-check"></i> Нет жестких условий и штрафов</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary btn-large">Стать поставщиком</a>
+                    </div>
+                    <div class="path-card" id="buyer-path">
+                        <h3>Я покупатель</h3>
+                        <p>Нужны качественные продукты напрямую от производителей по справедливой цене?</p>
+<div class="image-real-container buyer-image-fit">
+    <img src="img/Start-buyer.png" alt="Довольный покупатель" loading="lazy">
+</div>
+                        <ul class="path-features">
+                            <li><i class="fas fa-check"></i> Прямые поставки от производителей</li>
+                            <li><i class="fas fa-check"></i> Экономия до 50% на закупках</li>
+                            <li><i class="fas fa-check"></i> Проверенное качество</li>
+                            <li><i class="fas fa-check"></i> Возможность коллективных закупок</li>
+                        </ul>
+                        <a href="#" class="btn btn-secondary btn-large">Стать покупателем</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container cta-remake cta-with-image">
+                <div class="cta-image-fit"><img src="img/CTA.png" alt="Рука держит телефон с приложением СОТА" loading="lazy"></div>
+                <h2>Готовы попробовать?</h2>
+                <p>Вся настройка через Telegram — быстро, просто и без лишних формальностей.</p>
+                <a href="#" class="btn btn-cta-invert">Начать через Telegram</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">СОТА</span>
+                    <p>Маркетплейс нового поколения</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>О проекте</h4>
+                        <ul>
+                            <li><a href="#">О нас</a></li>
+                            <li><a href="#">Как это работает</a></li>
+                            <li><a href="#">Преимущества</a></li>
+                            <li><a href="#">Блог</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Для поставщиков</h4>
+                        <ul>
+                            <li><a href="#">Как начать</a></li>
+                            <li><a href="#">Условия сотрудничества</a></li>
+                            <li><a href="#">Часто задаваемые вопросы</a></li>
+                            <li><a href="#">Поддержка</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Для покупателей</h4>
+                        <ul>
+                            <li><a href="#">Как начать</a></li>
+                            <li><a href="#">Каталог товаров</a></li>
+                            <li><a href="#">Коллективные закупки</a></li>
+                            <li><a href="#">Поддержка</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <h4>Мы в социальных сетях</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 СОТА. Все права защищены.</p>
+                <div class="footer-legal">
+                    <a href="#">Политика конфиденциальности</a>
+                    <a href="#">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

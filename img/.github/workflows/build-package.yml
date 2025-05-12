@@ -1,0 +1,75 @@
+name: Build Package
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  test: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm run lint
+      - run: npm run test
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          node-version: 18
+          registry-url: https://npm.pkg.github.com/
+      - name: Install packages
+        run: |
+          echo @b2data:registry=https://npm.pkg.github.com > .npmrc
+          echo //npm.pkg.github.com/:_authToken=${{ secrets.REPO_SECRET }} >> .npmrc
+          npm install
+      - name: Build packages
+        run: npm run compile
+      - name: Publish NPM Package
+        run: |
+          npm pack
+          npm publish
+      - name: Cleanup
+        run: rm -f .npmrc
+
+  deploy:
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm install
+      - run: npm run storybook:prepare
+      - uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: gh-pages
+          build_dir: storybook-static
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_SECRET }}
+  
+  tag:
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create tag
+        run: |
+          PACKAGE_VERSION=$(cat package.json| grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[", ]//g')
+          git tag v$PACKAGE_VERSION
+          git push --tags
