@@ -239,18 +239,51 @@ function initTabs() {
     
     if (tabHeaders.length === 0 || tabPanes.length === 0) return;
     
+    // Функция для правильного отображения вкладок с учетом мобильной версии
+    function setActiveTab(tabId) {
+        // Убрать активный класс у всех заголовков и панелей
+        tabHeaders.forEach(h => h.classList.remove('active'));
+        tabPanes.forEach(p => p.classList.remove('active'));
+        
+        // Добавить активный класс выбранному заголовку и соответствующей панели
+        const selectedHeader = document.querySelector(`.tab-header[data-tab="${tabId}"]`);
+        if (selectedHeader) selectedHeader.classList.add('active');
+        
+        const selectedPane = document.getElementById(tabId);
+        if (selectedPane) {
+            selectedPane.classList.add('active');
+            
+            // Скролл к содержимому вкладки на мобильных устройствах
+            if (window.innerWidth <= 576) {
+                setTimeout(() => {
+                    const tabContent = document.querySelector('.tab-content');
+                    if (tabContent) {
+                        tabContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 100);
+            }
+        }
+    }
+    
+    // Инициализация обработчиков для переключения вкладок
     tabHeaders.forEach(header => {
         header.addEventListener('click', () => {
-            // Убрать активный класс у всех заголовков и панелей
-            tabHeaders.forEach(h => h.classList.remove('active'));
-            tabPanes.forEach(p => p.classList.remove('active'));
-            
-            // Добавить активный класс выбранному заголовку и соответствующей панели
-            header.classList.add('active');
             const tabId = header.getAttribute('data-tab');
-            document.getElementById(tabId).classList.add('active');
+            setActiveTab(tabId);
         });
     });
+    
+    // Обработка начального состояния (активная вкладка по умолчанию)
+    const initialActiveHeader = document.querySelector('.tab-header.active');
+    if (initialActiveHeader) {
+        const initialTabId = initialActiveHeader.getAttribute('data-tab');
+        // Установка активной вкладки без скролла при первоначальной загрузке
+        tabHeaders.forEach(h => h.classList.remove('active'));
+        tabPanes.forEach(p => p.classList.remove('active'));
+        initialActiveHeader.classList.add('active');
+        const initialPane = document.getElementById(initialTabId);
+        if (initialPane) initialPane.classList.add('active');
+    }
 }
 
 /**
